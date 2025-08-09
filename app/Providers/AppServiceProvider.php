@@ -22,5 +22,4 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    public const HOME = '/dashboard';
 }

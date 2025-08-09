@@ -1,62 +1,41 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tambah Berita Baru') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{-- Menampilkan error validasi --}}
-                    @if ($errors->any())
-                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                            <strong class="font-bold">Oops!</strong>
-                            <span class="block sm:inline">Ada beberapa masalah dengan input Anda.</span>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+@section('title', 'Tambah Berita Baru')
 
-                    <form action="{{ route('admin.berita.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
+@section('content')
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Tambah Berita Baru</h1>
 
-                        <!-- Judul -->
-                        <div class="mb-4">
-                            <label for="judul" class="block text-sm font-medium text-gray-700">Judul</label>
-                            <input type="text" name="judul" id="judul" value="{{ old('judul') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
-                        </div>
-
-                        <!-- Konten -->
-                        <div class="mb-4">
-                            <label for="konten" class="block text-sm font-medium text-gray-700">Konten</label>
-                            <textarea name="konten" id="konten" rows="10" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>{{ old('konten') }}</textarea>
-                        </div>
-
-                        <!-- Gambar -->
-                        <div class="mb-4">
-                            <label for="gambar" class="block text-sm font-medium text-gray-700">Gambar (Opsional)</label>
-                            <input type="file" name="gambar" id="gambar" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
-                            <p class="mt-1 text-sm text-gray-500">Tipe file: JPG, PNG, GIF. Maks: 2MB.</p>
-                        </div>
-
-                        <!-- Tombol Aksi -->
-                        <div class="flex items-center justify-end mt-6">
-                            <a href="{{ route('admin.berita.index') }}" class="text-sm text-gray-600 hover:text-gray-900 mr-4">
-                                Batal
-                            </a>
-                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
-                                Simpan Berita
-                            </button>
-                        </div>
-                    </form>
-
-                </div>
+    <div class="bg-white shadow-md rounded-lg p-6">
+        @if ($errors->any())
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+                <p class="font-bold">Oops! Ada beberapa masalah:</p>
+                <ul class="list-disc list-inside mt-2">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-        </div>
+        @endif
+
+        <form action="{{ route('admin.berita.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="mb-4">
+                <label for="judul" class="block text-gray-700 font-semibold mb-2">Judul Berita</label>
+                <input type="text" name="judul" id="judul" value="{{ old('judul') }}" class="w-full p-2 border border-gray-300 rounded" required>
+            </div>
+            <div class="mb-4">
+                <label for="konten" class="block text-gray-700 font-semibold mb-2">Konten</label>
+                <textarea name="konten" id="konten" rows="10" class="w-full p-2 border border-gray-300 rounded" required>{{ old('konten') }}</textarea>
+            </div>
+            <div class="mb-4">
+                <label for="gambar" class="block text-gray-700 font-semibold mb-2">Gambar (Opsional)</label>
+                <input type="file" name="gambar" id="gambar" class="w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50">
+                <p class="mt-1 text-sm text-gray-500">Tipe: JPG, PNG, GIF. Maks: 2MB.</p>
+            </div>
+            <div class="flex justify-end mt-6">
+                <a href="{{ route('admin.berita.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">Batal</a>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Simpan Berita</button>
+            </div>
+        </form>
     </div>
-</x-app-layout>
+@endsection

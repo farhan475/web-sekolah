@@ -1,7 +1,4 @@
-<div>
-    <!-- I begin to speak only when I am certain what I will say is not better left unsaid. - Cato the Younger -->
-</div>
- @extends('layouts.app')
+@extends('layouts.guest')
 
     @section('title', 'Login')
 
@@ -9,15 +6,14 @@
     <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
         <h1 class="text-2xl font-bold mb-6 text-center">Login</h1>
 
-        <!-- Menampilkan pesan error jika login gagal -->
         @error('email')
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
                 <span class="block sm:inline">{{ $message }}</span>
             </div>
         @enderror
 
-        <form action="{{ route('login.store') }}" method="POST">
-            @csrf <!-- PENTING untuk keamanan Laravel -->
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
 
             <div class="mb-4">
                 <label for="email" class="block text-gray-700 font-semibold mb-2">Alamat Email</label>
@@ -34,7 +30,7 @@
             </button>
         </form>
         <p class="text-center mt-4">
-            Belum punya akun? <a href="{{ route('register.show') }}" class="text-blue-600 hover:underline">Daftar di sini</a>
+            Belum punya akun? <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Daftar di sini</a>
         </p>
     </div>
     @endsection

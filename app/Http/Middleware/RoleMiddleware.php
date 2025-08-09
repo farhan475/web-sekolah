@@ -17,11 +17,9 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check() && Auth::user()->role == 'admin') {
-            // Jika ya, izinkan akses ke halaman berikutnya
             return $next($request);
         }
 
-        // Jika tidak, tolak akses dan tampilkan halaman error 403 (Forbidden)
         abort(403, 'ANDA TIDAK MEMILIKI AKSES KE HALAMAN INI.');
     }
 }

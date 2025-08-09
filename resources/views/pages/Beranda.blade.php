@@ -1,19 +1,18 @@
 @extends('layouts.public')
 
-@section('title', 'Beranda - SMA Harapan Bangsa')
+@section('title', 'Beranda - SMKN 64 Jakarta')
 
 @section('content')
 
-<!-- ===== 1. HERO SECTION ===== -->
 <section class="relative h-screen flex items-center justify-center text-white">
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ asset('images/hero-bg.jpg') }}');"></div>
-    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ asset('images/smkn64-jkt.jpg') }}');"></div>
+    <div class="absolute inset-0 bg-black opacity-60"></div>
     <div class="relative z-10 text-center px-6">
         <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4 animate-fade-in-down">
-            Membentuk Masa Depan Gemilang Melalui Pendidikan Berkualitas
+            SMK Negeri 64 Jakarta
         </h1>
         <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto animate-fade-in-up">
-            Selamat datang di SMA Harapan Bangsa, tempat di mana potensi bertemu prestasi.
+            Pusat Keunggulan Teknologi dan Rekayasa, Membangun Generasi Kreatif dan Inovatif.
         </p>
         <a href="{{ route('profil') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105 animate-bounce">
             Jelajahi Profil Kami
@@ -21,58 +20,51 @@
     </div>
 </section>
 
-<!-- ===== 2. SAMBUTAN KEPALA SEKOLAH ===== -->
 <section class="py-20 bg-white">
     <div class="container mx-auto px-6">
         <div class="flex flex-col md:flex-row items-center gap-12">
             <div class="md:w-1/3">
-                <img src="{{ asset('images/kepala-sekolah.jpg') }}" alt="Kepala Sekolah" class="rounded-lg shadow-2xl w-full">
+                <img src="{{ asset('images/kepala-sekolah.jpeg') }}" alt="Kepala Sekolah SMKN 64 Jakarta" class="rounded-lg shadow-2xl w-full">
             </div>
             <div class="md:w-2/3">
                 <h4 class="text-sm font-bold text-blue-600 uppercase mb-2">SAMBUTAN HANGAT</h4>
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Dari Kepala Sekolah</h2>
                 <p class="text-gray-600 mb-4 leading-relaxed">
-                    "Kami berkomitmen untuk menyediakan lingkungan belajar yang inspiratif dan mendukung, di mana setiap siswa dapat tumbuh secara akademis, sosial, dan emosional. Di SMA Harapan Bangsa, kami tidak hanya mengejar keunggulan akademis, tetapi juga membentuk karakter yang kuat dan berintegritas."
+                    "Sebagai lembaga pendidikan, SMKN 64 Jakarta tanggap dengan perkembangan teknologi tersebut. Dengan dukungan SDM yang dimiliki, sekolah ini siap untuk berkompetisi dengan sekolah lain dalam pelayanan informasi publik. Teknologi Informasi Web khususnya, menjadi sarana bagi SMK Negeri 64 Jakarta untuk memberi pelayanan informasi secara cepat, jelas, dan akuntabel. Dari layanan ini pula, sekolah siap menerima saran dari semua pihak yang akhirnya dapat menjawab Kebutuhan masyarakat."
                 </p>
-                <p class="font-bold text-gray-800">Drs. Budi Santoso, M.Pd.</p>
-                <p class="text-gray-500">Kepala Sekolah SMA Harapan Bangsa</p>
+                <p class="font-bold text-gray-800">Dewi Puspitasari, S.ST.Par, M.Par</p>
+                <p class="text-gray-500">Kepala Sekolah SMK Negeri 64 Jakarta</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===== 3. FITUR UNGGULAN ===== -->
 <section class="py-20 bg-gray-50">
     <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Mengapa Memilih Kami?</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto mb-12">Fokus kami adalah memberikan pengalaman pendidikan terbaik melalui pilar-pilar utama kami.</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow transform hover:-translate-y-2">
-                <div class="bg-blue-100 text-blue-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zM12 14l-9 5h18l-9-5zM12 14v7"></path></svg>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Program Keahlian Unggulan</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto mb-12">Kami fokus pada program keahlian di bidang teknologi yang sangat dibutuhkan oleh industri saat ini dan di masa depan.</p>
+        <div class="flex flex-wrap justify-center gap-8">
+
+            <div class="w-full md:w-1/3 lg:w-1/4 bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                <img src="{{ asset('images/Rpl.jpg') }}" alt="Rekayasa Perangkat Lunak" class="w-full h-48 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold mb-2">Rekayasa Perangkat Lunak</h3>
+                    <p class="text-gray-600">Mempelajari pengembangan aplikasi web, mobile, dan desktop dengan teknologi terkini.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-2">Kurikulum Adaptif</h3>
-                <p class="text-gray-600">Mengimplementasikan Kurikulum Merdeka yang relevan dengan tuntutan zaman.</p>
             </div>
-            <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow transform hover:-translate-y-2">
-                <div class="bg-blue-100 text-blue-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m12.728 0l-.707.707M12 21v-1m-6.364-1.636l.707-.707m12.728 0l.707-.707"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3a9 9 0 100 18 9 9 0 000-18z"></path></svg>
+
+            <div class="w-full md:w-1/3 lg:w-1/4 bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                <img src="{{ asset('images/Rpl.jpg') }}" alt="Desain Komunikasi Visual" class="w-full h-48 object-cover">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold mb-2">Desain Komunikasi Visual</h3>
+                    <p class="text-gray-600">Menguasai prinsip desain grafis, tipografi, dan multimedia untuk komunikasi visual yang efektif.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-2">Ekstrakurikuler Berprestasi</h3>
-                <p class="text-gray-600">Wadah pengembangan bakat di bidang olahraga, seni, dan sains.</p>
             </div>
-            <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow transform hover:-translate-y-2">
-                <div class="bg-blue-100 text-blue-600 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5h4v5h-4z"></path></svg>
-                </div>
-                <h3 class="text-xl font-bold mb-2">Fasilitas Modern</h3>
-                <p class="text-gray-600">Laboratorium, perpustakaan digital, dan sarana olahraga standar nasional.</p>
-            </div>
+
         </div>
     </div>
 </section>
 
-<!-- ===== 4. BERITA TERBARU (DINAMIS) ===== -->
 <section class="py-20 bg-white">
     <div class="container mx-auto px-6">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Info & Berita Sekolah</h2>
@@ -104,5 +96,9 @@
         </div>
     </div>
 </section>
+
+@push('scripts')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha521-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
 
 @endsection

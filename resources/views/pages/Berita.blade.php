@@ -4,9 +4,8 @@
 
 @section('content')
 
-<!-- HERO SECTION UNTUK BERITA -->
 <section class="relative h-[300px] md:h-[400px] flex items-center justify-center text-white">
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ asset('images/hero-bg.jpg') }}');"></div>
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ asset('images/smkn64-jkt.jpg') }}');"></div>
     <div class="absolute inset-0 bg-black opacity-60"></div>
     <div class="relative z-10 text-center px-6">
         <h1 class="text-4xl md:text-5xl font-bold">Berita & Informasi</h1>
@@ -14,7 +13,6 @@
     </div>
 </section>
 
-<!-- KONTEN DAFTAR BERITA -->
 <div class="py-20 bg-gray-50">
     <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -37,7 +35,6 @@
             @endforelse
         </div>
 
-        <!-- Navigasi Paginasi -->
         <div class="mt-12">
             {{ $semuaBerita->links() }}
         </div>

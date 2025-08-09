@@ -1,56 +1,56 @@
 <?php
 
-use App\Http\Controllers\Admin\BeritaController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\BeritaController;
+use App\Http\Controllers\Admin\PesanController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
-// Halaman untuk user login biasa
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// Halaman umum (beranda, profil, berita, kontak)
 Route::get('/', [PageController::class, 'beranda'])->name('beranda');
 Route::get('/profil-sekolah', [PageController::class, 'profil'])->name('profil');
 Route::get('/berita', [PageController::class, 'berita'])->name('berita');
 Route::get('/berita/{berita}', [PageController::class, 'showBerita'])->name('berita.show');
 Route::get('/kontak', [PageController::class, 'kontak'])->name('kontak');
 
-// Route khusus admin dengan prefix /admin
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    // CRUD Berita
-    Route::resource('berita', BeritaController::class);
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
 
-    // Optional: kelola profile jika admin juga punya akses
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
 });
 
-// 
 
-// Rute untuk menampilkan form registrasi
-Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register.show');
-// Rute untuk memproses data dari form registrasi
-Route::post('/register', [AuthController::class, 'register'])->name('register.store');
+Route::middleware(['auth'])->group(function () {
 
-// Rute untuk menampilkan form login
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.show');
-// Rute untuk memproses data dari form login
-Route::post('/login', [AuthController::class, 'login'])->name('login.store');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Rute untuk logout
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-
-// Halaman Dasbor yang hanya bisa diakses setelah login
-Route::get('/dashboard', function () {
-    // Di sini kita bisa menambahkan logika untuk admin nanti
-    return view('dashboard');
-})->middleware('auth')->name('dashboard');
+    Route::get('/dashboard', function () {
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->role === 'admin' || $user->role === 'administrator') {
+                return redirect()->route('admin.dashboard');
+            }
+            return view('dashboard');
+        }
+        return redirect()->route('login');
+    })->name('dashboard');
+    Route::get('/kontak', [PageController::class, 'kontak'])->name('kontak');
+    Route::post('/kontak', [PageController::class, 'storeKontak'])->name('kontak.store');
+    Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('berita', BeritaController::class)->parameters([
+            'berita' => 'berita'
+        ]);
+        Route::get('/pesan', [PesanController::class, 'index'])->name('pesan.index');
+        Route::delete('/pesan/{pesan}', [PesanController::class, 'destroy'])->name('pesan.destroy');
+    });
+});
